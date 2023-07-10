@@ -1,0 +1,18 @@
+<table class='table'>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Название</th>
+          <th>Дата последней активности</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let metering_device of metering_devices ">
+          <td>{{metering_device.id | json}}</td>
+          <td>{{metering_device.name | json}}</td>
+          <td>{{metering_device.last_active | date : 'd.MM.y hh:mm' : 'ru'}}</td>
+        </tr>
+      </tbody>
+</table>
+
+ 

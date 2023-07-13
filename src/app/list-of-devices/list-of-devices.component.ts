@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
-import { UserService } from '../Service';
+import { DeviceService } from '../services/devices.service';
 
 @Component({
   selector: 'app-list-of-devices',
@@ -13,10 +13,10 @@ export class ListOfDevicesComponent implements OnInit {
   public metering_devices: any[];
   formatVar = "ДД.MM.ГГГГ чч:мм";
 
-  constructor(private userService: UserService) {
+  constructor(private deviceService: DeviceService) {
   }
   ngOnInit() {
-    this.userService.listOfDevices(localStorage.getItem('access_token')).subscribe({
+    this.deviceService.listOfDevices().subscribe({
       next: (response: any) => {
         this.metering_devices = response.data.metering_devices.data;
 

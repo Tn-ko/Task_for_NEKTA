@@ -1,23 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from './User';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class UserService {
+export class DeviceService {
   constructor(private http: HttpClient) {
   }
-  public login(user: User): Observable<any> {
-    const email = user.email;
-    const password = user.password;
-    const postBody = { email, password, personal_data_access: true };
-    return this.http.post('https://core.nekta.cloud/api/auth/login', postBody);
-  }
 
-  public listOfDevices(access_token: any): Observable<any> {
+  public listOfDevices(): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Bearer ${access_token}`,
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
       })
     };
     const postBody = {
